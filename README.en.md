@@ -5,7 +5,7 @@ A lightweight keystroke & mouse-click overlay for streamers and content creators
 
 Designed to be used as an **OBS Browser Source** at `http://localhost:9002`.
 
-<img src="docs/screenshot.png" alt="KeyOverlay screenshot" width="480">
+<img src="overlayScreenshot.png" alt="KeyOverlay screenshot" width="480">
 
 ---
 
