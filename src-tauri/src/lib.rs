@@ -482,7 +482,7 @@ unsafe extern "system" fn keyboard_hook_proc(
             }
         });
     }
-    CallNextHookEx(0, code, wparam, lparam)
+    CallNextHookEx(std::ptr::null_mut(), code, wparam, lparam)
 }
 
 #[cfg(target_os = "windows")]
@@ -527,7 +527,7 @@ unsafe extern "system" fn mouse_hook_proc(
             });
         }
     }
-    CallNextHookEx(0, code, wparam, lparam)
+    CallNextHookEx(std::ptr::null_mut(), code, wparam, lparam)
 }
 
 // ── Permission check (no prompt) ────────────────────────────────────────────
@@ -663,17 +663,17 @@ fn start_key_listener(state: Arc<AppState>, app: AppHandle) {
                 let hk_kb = SetWindowsHookExW(
                     WH_KEYBOARD_LL,
                     Some(keyboard_hook_proc),
-                    0,
+                    std::ptr::null_mut(),
                     0,
                 );
                 let hk_ms = SetWindowsHookExW(
                     WH_MOUSE_LL,
                     Some(mouse_hook_proc),
-                    0,
+                    std::ptr::null_mut(),
                     0,
                 );
 
-                if hk_kb == 0 || hk_ms == 0 {
+                if hk_kb.is_null() || hk_ms.is_null() {
                     eprintln!("[KeyOverlay] SetWindowsHookExW failed");
                     let _ = app.emit("key-capture-error", "hook_failed");
                     return;
