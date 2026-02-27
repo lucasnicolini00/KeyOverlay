@@ -51,7 +51,7 @@ jobs:
             See the [README](https://github.com/${{ github.repository }}/blob/main/README.md) for full documentation.
 
             ### Windows
-            Download **KeyOverlay_x.x.x_x64-setup.exe** below.
+            Download **KeyOverlay_x.x.x_x64-setup.exe** below in 'Assets'.
             > ⚠️ Windows may show a SmartScreen warning — click **"More info → Run anyway"**. This is normal for unsigned open-source apps.
 
             ### macOS
