@@ -7,7 +7,7 @@ Diseñado para usarse como **Browser Source en OBS** apuntando a `http://localho
 
 > 🇬🇧 [English version](README.en.md)
 
-![KeyOverlay screenshot](docs/screenshot.png)
+<img src="/overlayScreenshot.png" alt="KeyOverlay screenshot" width="480">
 
 ---
 
