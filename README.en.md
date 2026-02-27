@@ -11,7 +11,7 @@ Designed to be used as an **OBS Browser Source** at `http://localhost:9002`.
 
 ## Quick Start (Windows)
 
-1. **Download** the latest `.exe` installer from [Releases](../../releases)
+1. **Download** the latest `.exe` installer from [Releases](https://github.com/lucasnicolini00/KeyOverlay/releases)
 2. Run the installer — Windows may show a SmartScreen prompt, click **"More info → Run anyway"**
 3. Launch **KeyOverlay**
 4. Click **Start** to begin capturing keystrokes

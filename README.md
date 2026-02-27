@@ -13,7 +13,7 @@ Diseñado para usarse como **Browser Source en OBS** apuntando a `http://localho
 
 ## Inicio rápido (Windows)
 
-1. **Descarga** el instalador `.exe` desde [Releases](../../releases)
+1. **Descarga** el instalador `.exe` desde [Releases](https://github.com/lucasnicolini00/KeyOverlay/releases)
 2. Ejecuta el instalador — Windows puede mostrar una advertencia de SmartScreen, haz clic en **"Más información → Ejecutar de todas formas"**
 3. Abre **KeyOverlay**
 4. Haz clic en **Iniciar captura**
