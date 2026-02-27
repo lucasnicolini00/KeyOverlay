@@ -646,7 +646,7 @@ fn start_key_listener(state: Arc<AppState>, app: AppHandle) {
                 Foundation::HWND,
                 System::Threading::GetCurrentThreadId,
                 UI::WindowsAndMessaging::{
-                    CallNextHookEx, DispatchMessageW, GetMessageW,
+                    DispatchMessageW, GetMessageW,
                     SetWindowsHookExW, UnhookWindowsHookEx,
                     MSG, WH_KEYBOARD_LL, WH_MOUSE_LL,
                 },
