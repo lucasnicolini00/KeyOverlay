@@ -52,17 +52,17 @@ Diseñado para usarse como **Browser Source en OBS** apuntando a `http://localho
 
 ## Referencia de ajustes
 
-| Ajuste                            | Descripción                                                   |
-| --------------------------------- | ------------------------------------------------------------- |
+| Ajuste                            | Descripción                                                                               |
+| --------------------------------- | ----------------------------------------------------------------------------------------- |
 | **Filtro de teclas**              | Lista de teclas permitidas (separadas por comas). Solo esas teclas aparecen en el overlay |
-| **Modo combinación**              | Muestra los modificadores junto a cada tecla (`Ctrl+Shift+K`) |
-| **Mostrar modificadores solos**   | Muestra un badge cuando solo se pulsa Ctrl / Alt / Shift      |
-| **Mostrar clics del ratón**       | Muestra badges LClick / RClick sin modificadores              |
-| **Mostrar combinaciones de clic** | Muestra `Ctrl+LClick` cuando se pulsa con un modificador      |
-| **Distribución**                  | Badges en horizontal o vertical                               |
-| **Animación**                     | `pop`, `desvanecer` o `deslizar`                              |
-| **Teclas visibles**               | Cantidad máxima de badges en pantalla                         |
-| **Duración de tecla**             | Tiempo que se muestra cada badge (ms)                         |
+| **Modo combinación**              | Muestra los modificadores junto a cada tecla (`Ctrl+Shift+K`)                             |
+| **Mostrar modificadores solos**   | Muestra un badge cuando solo se pulsa Ctrl / Alt / Shift                                  |
+| **Mostrar clics del ratón**       | Muestra badges LClick / RClick sin modificadores                                          |
+| **Mostrar combinaciones de clic** | Muestra `Ctrl+LClick` cuando se pulsa con un modificador                                  |
+| **Distribución**                  | Badges en horizontal o vertical                                                           |
+| **Animación**                     | `pop`, `desvanecer` o `deslizar`                                                          |
+| **Teclas visibles**               | Cantidad máxima de badges en pantalla                                                     |
+| **Duración de tecla**             | Tiempo que se muestra cada badge (ms)                                                     |
 
 ---
 
@@ -82,6 +82,7 @@ Diseñado para usarse como **Browser Source en OBS** apuntando a `http://localho
 KeyOverlay te permite elegir **exactamente qué teclas aparecen en el overlay**. Las que no estén en la lista se ignoran por completo — nunca llegan al stream.
 
 Esto es ideal para:
+
 - 🎮 **Juegos** — mostrar solo las teclas de movimiento y habilidades (`W, A, S, D, Q, E, R, F`)
 - 🕹️ **MOBAs / shooters** — filtrar números de habilidades (`1, 2, 3, 4, 5, 6`)
 - 📺 **Privacidad** — evitar que contraseñas u otras pulsaciones accidentales aparezcan en pantalla
@@ -94,12 +95,12 @@ Esto es ideal para:
 
 **Ejemplos:**
 
-| Uso | Filtro |
-|-----|--------|
-| WASD + habilidades | `W,A,S,D,Q,E,R,F` |
-| Números de habilidades | `1,2,3,4,5,6` |
-| Teclas de movimiento clásico | `W,A,S,D,Space` |
-| Todo (sin filtro) | _(desactiva el filtro)_ |
+| Uso                          | Filtro                  |
+| ---------------------------- | ----------------------- |
+| WASD + habilidades           | `W,A,S,D,Q,E,R,F`       |
+| Números de habilidades       | `1,2,3,4,5,6`           |
+| Teclas de movimiento clásico | `W,A,S,D,Space`         |
+| Todo (sin filtro)            | _(desactiva el filtro)_ |
 
 > El filtro no distingue entre mayúsculas y minúsculas. `q` y `Q` son equivalentes.
 

@@ -50,17 +50,17 @@ Designed to be used as an **OBS Browser Source** at `http://localhost:9002`.
 
 ## Settings Reference
 
-| Setting                  | Description                                          |
-| ------------------------ | ---------------------------------------------------- |
+| Setting                  | Description                                                          |
+| ------------------------ | -------------------------------------------------------------------- |
 | **Key filter**           | Comma-separated allowlist of keys — only those keys appear on stream |
-| **Combo mode**           | Prefix keys with held modifiers (`Ctrl+Shift+K`)     |
-| **Show modifiers alone** | Show a badge when only Ctrl / Alt / Shift is pressed |
-| **Show mouse clicks**    | Show LClick / RClick badges                          |
-| **Show click combos**    | Include modifiers on click badges (`Ctrl+LClick`)    |
-| **Layout**               | `horizontal` or `vertical` badge stack               |
-| **Animation style**      | `pop`, `fade`, or `slide`                            |
-| **Max visible keys**     | How many badges are shown at once                    |
-| **Key display duration** | How long each badge stays on screen (ms)             |
+| **Combo mode**           | Prefix keys with held modifiers (`Ctrl+Shift+K`)                     |
+| **Show modifiers alone** | Show a badge when only Ctrl / Alt / Shift is pressed                 |
+| **Show mouse clicks**    | Show LClick / RClick badges                                          |
+| **Show click combos**    | Include modifiers on click badges (`Ctrl+LClick`)                    |
+| **Layout**               | `horizontal` or `vertical` badge stack                               |
+| **Animation style**      | `pop`, `fade`, or `slide`                                            |
+| **Max visible keys**     | How many badges are shown at once                                    |
+| **Key display duration** | How long each badge stays on screen (ms)                             |
 
 ---
 
@@ -80,6 +80,7 @@ Designed to be used as an **OBS Browser Source** at `http://localhost:9002`.
 KeyOverlay lets you choose **exactly which keys appear on your stream**. Any key not in your list is silently ignored — it never reaches OBS.
 
 This is perfect for:
+
 - 🎮 **Games** — show only movement and ability keys (`W, A, S, D, Q, E, R, F`)
 - 🕹️ **MOBAs / shooters** — filter to ability numbers (`1, 2, 3, 4, 5, 6`)
 - 📺 **Privacy** — prevent passwords or accidental keypresses from showing up on stream
@@ -92,12 +93,12 @@ This is perfect for:
 
 **Examples:**
 
-| Use case | Filter |
-|----------|--------|
-| WASD + abilities | `W,A,S,D,Q,E,R,F` |
-| Ability numbers | `1,2,3,4,5,6` |
-| Classic movement | `W,A,S,D,Space` |
-| Show everything | _(disable the filter)_ |
+| Use case         | Filter                 |
+| ---------------- | ---------------------- |
+| WASD + abilities | `W,A,S,D,Q,E,R,F`      |
+| Ability numbers  | `1,2,3,4,5,6`          |
+| Classic movement | `W,A,S,D,Space`        |
+| Show everything  | _(disable the filter)_ |
 
 > The filter is case-insensitive. `q` and `Q` are treated the same.
 
