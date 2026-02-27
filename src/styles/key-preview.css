@@ -1,0 +1,11 @@
+.key-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.preview-hint {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}

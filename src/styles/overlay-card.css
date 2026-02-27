@@ -1,0 +1,237 @@
+.overlay-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.overlay-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.obs-icon {
+  font-size: 16px;
+}
+
+/* ── Setup steps ─────────────────────────────────────────────────────────── */
+
+.setup-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.setup-steps--single {
+  grid-template-columns: 1fr;
+}
+
+.setup-step {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.step-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.step-btn:hover:not(:disabled) {
+  background: var(--border);
+}
+.step-btn:disabled {
+  cursor: default;
+}
+
+.step-btn--done {
+  background: color-mix(in srgb, var(--success) 12%, transparent);
+  border-color: var(--success);
+  color: var(--success);
+}
+.step-btn--done:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--success) 20%, transparent);
+}
+
+.step-btn--err {
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.step-btn--err:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger) 20%, transparent);
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.step-btn--done .step-num {
+  background: var(--success);
+  color: #fff;
+}
+.step-btn--err .step-num {
+  background: var(--danger);
+  color: #fff;
+}
+
+.step-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.step-check {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.step-check--stop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--danger);
+  color: #fff;
+  font-size: 8px;
+  flex-shrink: 0;
+}
+
+.step-hint {
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0 2px;
+  color: var(--text-dim);
+}
+.step-hint--err {
+  color: var(--danger);
+}
+
+/* ── URL row ─────────────────────────────────────────────────────────────── */
+
+.overlay-url-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.overlay-url {
+  flex: 1;
+  font-family: monospace;
+  font-size: 15px;
+  color: var(--accent);
+  letter-spacing: 0.2px;
+}
+
+.copy-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.copy-btn:hover {
+  background: var(--accent-hover);
+}
+
+.overlay-hint {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* ── Key filter ──────────────────────────────────────────────────────────── */
+
+.key-filter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.key-filter-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.key-filter-hint {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+.filter-input {
+  width: 100%;
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-family: monospace;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}

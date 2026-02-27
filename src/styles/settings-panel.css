@@ -1,0 +1,179 @@
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 2px;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.section-title-row .section-title {
+  margin-bottom: 0;
+}
+
+.reset-btn {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.reset-btn:hover {
+  color: var(--danger, #e05c5c);
+  border-color: var(--danger, #e05c5c);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 28px;
+}
+
+.row--col {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.row--col label {
+  white-space: normal;
+}
+
+.filter-input {
+  width: 100%;
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-family: monospace;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.filter-input::placeholder {
+  color: var(--text-dim);
+  opacity: 0.7;
+}
+
+.row label {
+  font-size: 13px;
+  color: var(--text);
+  flex: 1;
+  white-space: nowrap;
+}
+
+.row input[type="range"] {
+  flex: 1;
+  max-width: 180px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.row input[type="color"] {
+  width: 36px;
+  height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.row select {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 13px;
+  cursor: pointer;
+  max-width: 180px;
+}
+
+.preset-row {
+  display: flex;
+  gap: 8px;
+}
+
+.preset-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 12px;
+}
+
+.preset-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.preset-btn.active {
+  border-color: var(--accent);
+  background: rgba(124, 106, 247, 0.15);
+  color: var(--accent);
+}
+
+.preset-icon {
+  font-size: 18px;
+}
+
+.preset-label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: capitalize;
+}

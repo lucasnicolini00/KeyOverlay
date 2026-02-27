@@ -1,0 +1,12 @@
+# Node
+node_modules/
+dist/
+.env
+
+# Tauri
+src-tauri/target/
+src-tauri/WixTools/
+
+# Editor
+.DS_Store
+.vscode/settings.json

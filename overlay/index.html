@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>KeyOverlay</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Crect x='4' y='9' width='24' height='14' rx='3' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3Crect x='7' y='12' width='3' height='3' rx='1' fill='%23fff'/%3E%3Crect x='12' y='12' width='3' height='3' rx='1' fill='%23fff'/%3E%3Crect x='17' y='12' width='3' height='3' rx='1' fill='%23fff'/%3E%3Crect x='22' y='12' width='3' height='3' rx='1' fill='%23fff'/%3E%3Crect x='7' y='17' width='8' height='3' rx='1' fill='%23fff'/%3E%3Crect x='17' y='17' width='8' height='3' rx='1' fill='%23fff'/%3E%3C/svg%3E"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=JetBrains+Mono:wght@600&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* OBS: background MUST be transparent */
+      html,
+      body {
+        background: transparent !important;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      #overlay {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: nowrap;
+        max-width: 95vw;
+        pointer-events: none;
+      }
+
+      #overlay.vertical {
+        flex-direction: column;
+        bottom: auto;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+      }
+
+      .key-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        user-select: none;
+        will-change: transform, opacity;
+        transition:
+          max-width 0.12s ease,
+          padding 0.12s ease,
+          opacity 0.12s ease;
+        overflow: hidden;
+      }
+
+      /* New badge starts collapsed, expands to full width */
+      .key-badge.expanding {
+        max-width: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      /* ── Fade animation ── */
+      .anim-fade.entering {
+        animation: fadeIn 0.12s ease forwards;
+      }
+      .anim-fade.leaving {
+        animation: fadeOut 0.25s ease forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      /* ── Slide animation ── */
+      .anim-slide.entering {
+        animation: slideIn 0.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .anim-slide.leaving {
+        animation: slideOut 0.2s ease forwards;
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(7px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes slideOut {
+        from {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(-10px) scale(0.9);
+        }
+      }
+
+      /* ── Pop animation ── */
+      .anim-pop.entering {
+        animation: popIn 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+      .anim-pop.leaving {
+        animation: popOut 0.18s ease forwards;
+      }
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.82);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes popOut {
+        from {
+          opacity: 1;
+          transform: scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="overlay"></div>
+
+    <script>
+      // ── Default settings (overridden by WebSocket messages) ──────────────
+      let settings = {
+        fontFamily: "monospace",
+        fontSize: 28,
+        textColor: "#ffffff",
+        borderColor: "#ffffff",
+        backgroundColor: "rgba(0,0,0,0.35)",
+        borderWidth: 1,
+        borderRadius: 8,
+        backgroundBlur: 4,
+        textShadow: false,
+        textShadowColor: "#000000",
+        keyDisplayDuration: 1200,
+        showModifiersAlone: false,
+        showMouseClicks: false,
+        showMouseClickCombos: true,
+        comboMode: true,
+        keyFilter: "Q,W,E,R,1,2,3,4,5,6",
+        keyFilterEnabled: true,
+        layout: "horizontal",
+        animationStyle: "fade",
+        maxVisibleKeys: 5,
+        preset: "minimal",
+      };
+
+      // ── Active key badges ─────────────────────────────────────────────────
+      // Each entry: { id, label, timer, el }
+      const activeKeys = [];
+      let nextId = 0;
+      let lastKeyTime = 0;
+      const FAST_TYPE_THRESHOLD = 150; // ms — skip enter animation when typing this fast
+
+      const overlay = document.getElementById("overlay");
+
+      function applyLayoutClass() {
+        overlay.classList.toggle("vertical", settings.layout === "vertical");
+      }
+
+      function buildBadgeStyle() {
+        return {
+          fontFamily: settings.fontFamily,
+          fontSize: settings.fontSize + "px",
+          fontWeight: "600",
+          color: settings.textColor,
+          border: `${settings.borderWidth}px solid ${settings.borderColor}`,
+          borderRadius: settings.borderRadius + "px",
+          background: settings.backgroundColor,
+          backdropFilter:
+            settings.backgroundBlur > 0
+              ? `blur(${settings.backgroundBlur}px)`
+              : "",
+          textShadow: settings.textShadow
+            ? `0 0 10px ${settings.textShadowColor}, 0 0 20px ${settings.textShadowColor}`
+            : "",
+          padding: `${Math.round(settings.fontSize * 0.25)}px ${Math.round(settings.fontSize * 0.55)}px`,
+          lineHeight: "1",
+          minWidth: settings.fontSize * 1.4 + "px",
+          textAlign: "center",
+        };
+      }
+
+      function applyStyle(el) {
+        const style = buildBadgeStyle();
+        Object.assign(el.style, style);
+      }
+
+      function removeKey(entry) {
+        const idx = activeKeys.indexOf(entry);
+        if (idx !== -1) activeKeys.splice(idx, 1);
+
+        // Trigger leave animation
+        entry.el.classList.remove("entering");
+        entry.el.classList.add("leaving");
+        const duration = 250; // max animation duration ms
+        setTimeout(() => {
+          entry.el.remove();
+        }, duration);
+      }
+
+      function addKey(label) {
+        // Enforce max visible keys — remove oldest
+        while (activeKeys.length >= settings.maxVisibleKeys) {
+          const oldest = activeKeys[0];
+          clearTimeout(oldest.timer);
+          removeKey(oldest);
+        }
+
+        const el = document.createElement("span");
+        const now = Date.now();
+        const isFast = now - lastKeyTime < FAST_TYPE_THRESHOLD;
+        lastKeyTime = now;
+        el.textContent = label;
+        applyStyle(el);
+
+        // Start collapsed so existing badges glide smoothly
+        el.className = "key-badge expanding";
+        overlay.appendChild(el);
+
+        // Next frame: expand to full width, then play enter animation
+        requestAnimationFrame(() => {
+          el.classList.remove("expanding");
+          el.style.maxWidth = "";
+          if (!isFast) {
+            el.classList.add(`anim-${settings.animationStyle}`, "entering");
+          }
+        });
+
+        overlay.appendChild(el);
+
+        const id = nextId++;
+        const entry = { id, label, el };
+
+        // Schedule removal
+        entry.timer = setTimeout(() => {
+          removeKey(entry);
+        }, settings.keyDisplayDuration);
+
+        activeKeys.push(entry);
+      }
+
+      // ── WebSocket connection ──────────────────────────────────────────────
+      const WS_URL = "ws://localhost:9001";
+      let ws = null;
+      let reconnectTimeout = null;
+
+      function connect() {
+        if (ws) return;
+        ws = new WebSocket(WS_URL);
+
+        ws.onopen = () => {
+          console.log("[KeyOverlay] overlay connected");
+        };
+
+        ws.onmessage = (e) => {
+          let msg;
+          try {
+            msg = JSON.parse(e.data);
+          } catch {
+            return;
+          }
+
+          if (msg.type === "keypress") {
+            addKey(msg.combo);
+          } else if (msg.type === "settings") {
+            settings = { ...settings, ...msg.data };
+            applyLayoutClass();
+            // Re-style existing badges
+            for (const entry of activeKeys) {
+              applyStyle(entry.el);
+              entry.el.className = `key-badge anim-${settings.animationStyle} entering`;
+            }
+          }
+        };
+
+        ws.onclose = () => {
+          ws = null;
+          reconnectTimeout = setTimeout(connect, 2000);
+        };
+
+        ws.onerror = () => {
+          ws.close();
+        };
+      }
+
+      applyLayoutClass();
+      connect();
+    </script>
+  </body>
+</html>
