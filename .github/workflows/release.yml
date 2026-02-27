@@ -47,15 +47,15 @@ jobs:
           tagName: ${{ github.ref_name }}
           releaseName: "KeyOverlay ${{ github.ref_name }}"
           releaseBody: |
-            ## What's new
-            See the [README](https://github.com/${{ github.repository }}/blob/main/README.md) for full documentation.
+            ## Novedades
+            Consulta el [README](https://github.com/${{ github.repository }}/blob/main/README.md) para la documentación completa.
 
             ### Windows
-            Download **KeyOverlay_x.x.x_x64-setup.exe** below in 'Assets'.
-            > ⚠️ Windows may show a SmartScreen warning — click **"More info → Run anyway"**. This is normal for unsigned open-source apps.
+            Descarga **KeyOverlay_x.x.x_x64-setup.exe** en la sección **Assets** de abajo.
+            > ⚠️ Windows puede mostrar una advertencia de SmartScreen — haz clic en **"Más información → Ejecutar de todas formas"**. Esto es normal en apps de código abierto sin firmar.
 
             ### macOS
-            Download the **.dmg** for your chip:
+            Descarga el **.dmg** según tu chip:
             - **Apple Silicon (M1/M2/M3):** `_aarch64.dmg`
             - **Intel:** `_x64.dmg`
           releaseDraft: true
