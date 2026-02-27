@@ -38,6 +38,7 @@ Designed to be used as an **OBS Browser Source** at `http://localhost:9002`.
 ## Features
 
 - **Real-time keystroke display** — animated badges for every key press
+- **Key filter** — choose exactly which keys appear on stream; everything else is silently ignored
 - **Mouse click support** — LClick / RClick badges, with optional modifier combos (`Ctrl+LClick`)
 - **Combo mode** — shows held modifiers with each key (`Ctrl+Shift+K`)
 - **Modifier-alone mode** — optionally show standalone Ctrl / Alt / Shift / Win presses
@@ -51,6 +52,7 @@ Designed to be used as an **OBS Browser Source** at `http://localhost:9002`.
 
 | Setting                  | Description                                          |
 | ------------------------ | ---------------------------------------------------- |
+| **Key filter**           | Comma-separated allowlist of keys — only those keys appear on stream |
 | **Combo mode**           | Prefix keys with held modifiers (`Ctrl+Shift+K`)     |
 | **Show modifiers alone** | Show a badge when only Ctrl / Alt / Shift is pressed |
 | **Show mouse clicks**    | Show LClick / RClick badges                          |
@@ -70,6 +72,34 @@ Designed to be used as an **OBS Browser Source** at `http://localhost:9002`.
 | 🎮 Gaming | Pop       | ✅         | ✅           |
 | 👾 Retro  | Fade      | ✅         | ❌           |
 | ✨ Neon   | Pop       | ✅         | ✅           |
+
+---
+
+## Key Filter — Show Only What You Want
+
+KeyOverlay lets you choose **exactly which keys appear on your stream**. Any key not in your list is silently ignored — it never reaches OBS.
+
+This is perfect for:
+- 🎮 **Games** — show only movement and ability keys (`W, A, S, D, Q, E, R, F`)
+- 🕹️ **MOBAs / shooters** — filter to ability numbers (`1, 2, 3, 4, 5, 6`)
+- 📺 **Privacy** — prevent passwords or accidental keypresses from showing up on stream
+
+**How to use it:**
+
+1. In the **OBS Browser Source** section of the app, enable **Key filter**
+2. Type the keys you want to show, separated by commas
+3. Changes apply instantly — no OBS restart needed
+
+**Examples:**
+
+| Use case | Filter |
+|----------|--------|
+| WASD + abilities | `W,A,S,D,Q,E,R,F` |
+| Ability numbers | `1,2,3,4,5,6` |
+| Classic movement | `W,A,S,D,Space` |
+| Show everything | _(disable the filter)_ |
+
+> The filter is case-insensitive. `q` and `Q` are treated the same.
 
 ---
 

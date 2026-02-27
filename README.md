@@ -40,6 +40,7 @@ Diseñado para usarse como **Browser Source en OBS** apuntando a `http://localho
 ## Características
 
 - **Teclas en tiempo real** — badges animados para cada pulsación
+- **Filtro de teclas** — elige exactamente qué teclas quieres mostrar; el resto se ignoran silenciosamente
 - **Clics del ratón** — badges LClick / RClick, con combinaciones opcionales (`Ctrl+LClick`)
 - **Modo combinación** — muestra los modificadores junto a cada tecla (`Ctrl+Shift+K`)
 - **Modificadores solos** — opción para mostrar pulsaciones de solo Ctrl / Alt / Shift / Win
@@ -53,6 +54,7 @@ Diseñado para usarse como **Browser Source en OBS** apuntando a `http://localho
 
 | Ajuste                            | Descripción                                                   |
 | --------------------------------- | ------------------------------------------------------------- |
+| **Filtro de teclas**              | Lista de teclas permitidas (separadas por comas). Solo esas teclas aparecen en el overlay |
 | **Modo combinación**              | Muestra los modificadores junto a cada tecla (`Ctrl+Shift+K`) |
 | **Mostrar modificadores solos**   | Muestra un badge cuando solo se pulsa Ctrl / Alt / Shift      |
 | **Mostrar clics del ratón**       | Muestra badges LClick / RClick sin modificadores              |
@@ -72,6 +74,34 @@ Diseñado para usarse como **Browser Source en OBS** apuntando a `http://localho
 | 🎮 Gaming | Pop        | ✅            | ✅             |
 | 👾 Retro  | Desvanecer | ✅            | ✅             |
 | ✨ Neon   | Pop        | ✅            | ✅             |
+
+---
+
+## Filtro de teclas — muestra solo lo que quieres
+
+KeyOverlay te permite elegir **exactamente qué teclas aparecen en el overlay**. Las que no estén en la lista se ignoran por completo — nunca llegan al stream.
+
+Esto es ideal para:
+- 🎮 **Juegos** — mostrar solo las teclas de movimiento y habilidades (`W, A, S, D, Q, E, R, F`)
+- 🕹️ **MOBAs / shooters** — filtrar números de habilidades (`1, 2, 3, 4, 5, 6`)
+- 📺 **Privacidad** — evitar que contraseñas u otras pulsaciones accidentales aparezcan en pantalla
+
+**Cómo usarlo:**
+
+1. En la sección **OBS Browser Source** de la app, activa **Filtro de teclas**
+2. Escribe las teclas que quieres mostrar, separadas por comas
+3. Los cambios se aplican al instante — sin reiniciar OBS
+
+**Ejemplos:**
+
+| Uso | Filtro |
+|-----|--------|
+| WASD + habilidades | `W,A,S,D,Q,E,R,F` |
+| Números de habilidades | `1,2,3,4,5,6` |
+| Teclas de movimiento clásico | `W,A,S,D,Space` |
+| Todo (sin filtro) | _(desactiva el filtro)_ |
+
+> El filtro no distingue entre mayúsculas y minúsculas. `q` y `Q` son equivalentes.
 
 ---
 
